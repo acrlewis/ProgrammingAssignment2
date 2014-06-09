@@ -1,8 +1,10 @@
+## Coursera - R Programming - Johns Hopkins
+## Programming Assignment 2
 ## Function of makeCacheMatrix and cacheSolve
 ## Function making concepts are taken from different Github pages
 
 makeCacheMatrix <- function(x = matrix()) {
-  inverse <- NULL
+  inv <- NULL
   # Matrix value
   set <- function(y) {
     x <- y
@@ -11,23 +13,23 @@ makeCacheMatrix <- function(x = matrix()) {
   # Required matrix value
   get <- function() x
   # Inverse function
-  set_inverse <- function(inverse1) inverse <<- inverse1
+  set_inv <- function(inv1) inv <<- inv1
   # Inverse value
-  get_inverse <- function() inverse
+  get_inv <- function() inv
   
   # Listing
-  list(set = set, get = get, set_inverse = set_inverse, get_inverse = get_inverse)
+  list(set = set, get = get, set_inv = set_inv, get_inv = get_inv)
 }
 
 
 cacheSolve <- function(x, ...) {
-  inverse <- x$get_inverse()
+  inv <- x$get_inverse()
   if(!is.null(inverse)) {
     message("Cached Data Shown")
     return(inverse)
   }
   data <- x$get()
-  inverse <- solve(data, ...)
+  inv <- solve(data, ...)
   x$set_inverse(inverse)
   inverse
 }
