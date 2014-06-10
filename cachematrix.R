@@ -1,36 +1,40 @@
-## Coursera - R Programming - Johns Hopkins
-## Programming Assignment 2
-## Function of makeCacheMatrix and cacheSolve
-## Function making concepts are taken from different Github pages
+# This function, makeCachMatrix is a list containing a function to:
+# set the matrix
+# get the matrix
+# set the inverse of the matrix
+# get the inverse of the matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-  inv <- NULL
-  # Matrix value
-  set <- function(y) {
-    x <- y
-    inverse <- NULL
-  }
-  # Required matrix value
-  get <- function() x
-  # Inverse function
-  set_inv <- function(inv1) inv <<- inv1
-  # Inverse value
-  get_inv <- function() inv
   
-  # Listing
-  list(set = set, get = get, set_inv = set_inv, get_inv = get_inv)
+  inv <- NULL
+  set <- function(y) {
+    x <<- y
+    inv <<- NULL
+  }
+  get <- function() x
+  setinv <- function(solve) inv <<- solve
+  getinv <- function() inv
+  
+  list(set = set, get = get, setinv = setinv, getinv = getinv)
+  
 }
 
+# This function, cacheSolve, returns the inverse of a matrix
+# unless it has already been calculated, in which case
+# it simply returns the cached value to save time (see test below)
 
 cacheSolve <- function(x, ...) {
-  inv <- x$get_inverse()
-  if(!is.null(inverse)) {
-    message("Cached Data Shown")
-    return(inverse)
+  
+  inv <- x$getinv()
+  
+  if(!is.null(inv)) {
+    message("getting cached data")
+    return(inv)
   }
+  
   data <- x$get()
   inv <- solve(data, ...)
-  x$set_inverse(inverse)
-  inverse
+  x$setinv(inv)
+  inv
+  
 }
-
