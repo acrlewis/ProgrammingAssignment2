@@ -17,16 +17,15 @@ makeCacheMatrix <- function(x = matrix()) {
   
 }
 
-# This function, cacheSolve, returns the inverse of a matrix
-# unless it has already been calculated, in which case
-# it simply returns the cached value to save time (see test below)
+# cacheSolve, returns the inverse of a matrix
+# if it has already been calculated, it returns the cached value
 
 cacheSolve <- function(x, ...) {
   
   inverse <- x$getinverse()
   
   if(!is.null(inverse)) {
-    message("getting cached data")
+    message("using data from cache")
     return(inverse)
   }
   
